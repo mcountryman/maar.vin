@@ -1,0 +1,51 @@
+@import "_neat";
+@import "_mixins";
+@import "_bourbon";
+@import "_variables";
+
+* {
+  -webkit-font-smoothing: antialised;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html, body {
+  margin: 0;
+
+  color: $color-black;
+  font-size: 16px;
+  font-family: $font-paragraph;
+
+  @include respond-to("(max-width: 42rem)") {
+    font-size: 14px;
+  }
+}
+
+#app {
+}
+
+main {
+  margin: 1rem;
+
+  @include respond-to("(min-width: 60rem)") {
+    width: 60rem;
+    margin: 1rem auto;
+  }
+}
+
+@for $i from 1 through 6 {
+  h#{7 - $i} {
+    margin: 0.2rem 0.2rem;
+    line-height: $i * 1.2rem;
+
+    font-size: $i * 1.2rem;
+    font-family: $font-header;
+  }
+}
+
+p {
+  margin: 0.3rem 0.2rem;
+  line-height: 1.2rem;
+
+  font-size: 1.2rem;
+  font-family: $font-header;
+}

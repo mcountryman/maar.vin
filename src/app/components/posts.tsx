@@ -20,7 +20,7 @@ export class Posts extends React.Component<{}, IState> {
   }
 
   public componentWillMount() {
-    axios.default.get("/data/posts.json")
+    axios.default.get("/assets/posts.json")
       .then((response) => {
         if (response.status === 200) {
           const posts = response.data.map((post: any) => ({

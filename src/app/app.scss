@@ -10,6 +10,7 @@
 
 html, body {
   margin: 0;
+  height: 100%;
 
   color: $color-black;
   font-size: 16px;
@@ -21,14 +22,43 @@ html, body {
 }
 
 #app {
+  height: 100%;
+}
+
+#container {
+  height: calc(100% - 10rem);
 }
 
 main {
   margin: 1rem;
+  height: calc(100% - 1rem);
 
   @include respond-to("(min-width: 60rem)") {
     width: 60rem;
     margin: 1rem auto;
+  }
+}
+
+#center {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+#social-icon {
+  width: 6rem;
+  height: 6rem;
+  margin: 3rem;
+  padding: 1rem;
+
+  border: 0.8rem solid $color-black;
+
+  &:hover {
+    background: $color-shadow;
   }
 }
 
@@ -47,5 +77,5 @@ p {
   line-height: 1.2rem;
 
   font-size: 1.2rem;
-  font-family: $font-header;
+  font-family: $font-paragraph;
 }

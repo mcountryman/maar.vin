@@ -7,12 +7,12 @@ export class Navigation extends React.Component {
   public render() {
     return (
       <nav>
-        <ul id="links">
-          <li><Link to="/">maar.vin</Link></li>
-          <li><Link to="/blog">Blog</Link></li>
-          <li><Link to="/contact">Contact</Link></li>
-          <li><Link to="/portfolio">Portfolio</Link></li>
-        </ul>
+        <div id="links">
+          <Link to="/">maar.vin</Link>
+          <Link to="/blog">Blog</Link>
+          <Link to="/contact">Contact</Link>
+          <Link to="/portfolio">Portfolio</Link>
+        </div>
       </nav>
     );
   }

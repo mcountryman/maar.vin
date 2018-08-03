@@ -4,36 +4,40 @@
 
 nav {
   width: 100%;
-  height: 2.5rem;
+  padding: 1em 0em;
   display: block;
-  padding: 1rem;
 
   box-shadow: 0px 1px $color-shadow;
   background: $color-black;
 
   #links {
+    width: 100%;
     height: 100%;
+    justify-content: space-around;
 
-    @include grid-container;
     @include respond-to("(min-width: 60rem)") {
-      width: 60rem;
+      width: 59rem;
       margin: 1rem auto;
+      justify-content: space-between;
     }
-  }
 
-  li {
-    @include grid-column(3);
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
   }
 
   a {
+    padding: 0 1rem 0 1rem;
+    @include respond-to("(min-width: 60rem)") { }
+
     color: $color-white;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
+    line-height: 2.5rem;
+    text-align: center;
     text-decoration: none;
 
     &:hover {
-      box-shadow:
-        inset   0rem -.5rem 0rem 0rem rgba(255, 255, 255, 0.3)
-      ;
+      box-shadow: inset 0 -1.2rem $color-highlight;
     }
   }
 }

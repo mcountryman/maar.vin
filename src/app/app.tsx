@@ -2,7 +2,7 @@ import "normalize.css";
 import "./app.scss";
 
 import * as React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { HashRouter as Router, Route } from "react-router-dom";
 
 import { Footer } from "./components/footer";
 import { Navigation } from "./components/navigation";
@@ -15,7 +15,7 @@ export class App extends React.Component {
   public render() {
     return (
       <Router>
-        <div>
+        <div id="container">
           <Navigation/>
           <main>
             <Route path="/" component={HomePage} exact={true} />

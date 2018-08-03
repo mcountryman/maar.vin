@@ -8,7 +8,7 @@ export class HomePage extends React.Component {
 
     return (
       <div>
-        <h3>Hi! I'm a {Math.round(years)}y old developer from Germany.</h3>
+        <h3>Hey, I'm a {Math.round(years)}y old developer from Germany.</h3>
         <br/>
         <p>Thanks for checking out my website!</p>
       </div>

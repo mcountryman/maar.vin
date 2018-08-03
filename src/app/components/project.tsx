@@ -1,20 +1,15 @@
-import "./project.scss";
-
 import * as React from "react";
+import Markdown from "react-markdown";
+import { IProject } from "../models/iproject";
 
-interface IProps {
-  name: string;
-  link: string;
-}
-
-export class Project extends React.Component<IProps> {
+export class Project extends React.Component<IProject> {
   public render() {
     return (
       <article id="project">
-        <div id="project-header">
-          <a href={this.props.link}>{this.props.name}</a>
-        </div>
-        <div id="project-body">{this.props.children}</div>
+        <a id="project-header" href={this.props.link}>
+          <h4>{this.props.name}</h4>
+        </a>
+        <Markdown source={this.props.content}></Markdown>
       </article>
     );
   }

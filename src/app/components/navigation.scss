@@ -30,7 +30,7 @@ nav {
 
     #hamburger { display: none; }
 
-    @include respond-to("(min-width: 21rem) and (max-width: 42rem)") {
+    @include respond-to("(max-width: 42rem)") {
       flex-direction: column;
 
       #hamburger {
@@ -44,7 +44,7 @@ nav {
       }
     }
 
-    @include respond-to("(min-width: 60rem)") {
+    @include respond-to("(min-width: 42rem) and (min-width: 60rem)") {
       width: 59rem;
       margin: 1rem auto;
       justify-content: space-between;

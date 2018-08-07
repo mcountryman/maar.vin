@@ -1,6 +1,6 @@
-import * as React from "react";
-
 import "./contacts.scss";
+
+import * as React from "react";
 
 export class Contacts extends React.Component {
   public render() {

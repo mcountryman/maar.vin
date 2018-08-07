@@ -1,12 +1,11 @@
-import * as React from "react";
-import { Link } from "react-router-dom";
-
 import "./navigation.scss";
+
+import * as React from "react";
 
 export const Navigation = () => (
   <nav>
     <div id="links">
-      <Link to="/">maar.vin</Link>
+      <a href="/">maar.vin</a>
     </div>
   </nav>
 );

@@ -2,14 +2,12 @@ import "normalize.css";
 import "./app.scss";
 
 import * as React from "react";
-import { HashRouter as Router, Route } from "react-router-dom";
+import { HashRouter as Router } from "react-router-dom";
 
+import { Contacts } from "./components/contacts";
 import { Footer } from "./components/footer";
 import { Navigation } from "./components/navigation";
-import { BlogPage } from "./pages/blog";
-import { ContactPage } from "./pages/contact";
-import { HomePage } from "./pages/home";
-import { PortfolioPage } from "./pages/portfolio";
+import { Projects } from "./components/projects";
 
 export class App extends React.Component {
   public render() {
@@ -18,10 +16,8 @@ export class App extends React.Component {
         <div id="container">
           <Navigation/>
           <main>
-            <Route path="/" component={HomePage} exact={true} />
-            <Route path="/blog" component={BlogPage} />
-            <Route path="/contact" component={ContactPage} />
-            <Route path="/portfolio" component={PortfolioPage} />
+            <Contacts/>
+            <Projects/>
           </main>
           <Footer/>
         </div>

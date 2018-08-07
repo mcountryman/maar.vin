@@ -26,7 +26,7 @@ nav {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
 
     #hamburger { display: none; }
 
@@ -47,7 +47,7 @@ nav {
     @include respond-to("(min-width: 42rem) and (min-width: 60rem)") {
       width: 59rem;
       margin: 1rem auto;
-      justify-content: space-between;
+      justify-content: center;
     }
   }
 

@@ -1,0 +1,22 @@
+@import "../_variables.scss";
+
+#contacts {
+  width: 100%;
+  
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+#social-icon {
+  width: 6rem;
+  height: 6rem;
+  margin: 0 1rem 1rem 0;
+  padding: 1rem;
+
+  border: 1rem solid $color-black;
+
+  &:hover {
+    background: $color-shadow;
+  }
+}

@@ -9,8 +9,8 @@
   "private": false,
   "scripts": {
     "clean": "rm -rf dist",
-    "build": "webpack --config script/webpack.production.js",
-    "watch": "webpack-dev-server --config script/webpack.development.js",
+    "start": "parcel src/index.html --out-dir docs/",
+    "build": "parcel build src/index.html --out-dir docs/",
     "test:e2e": "",
     "test:watch": ""
   },

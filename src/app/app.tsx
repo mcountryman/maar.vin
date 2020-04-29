@@ -1,7 +1,7 @@
 import "normalize.css";
 import "./app.scss";
 
-import * as React from "react";
+import React from "react";
 
 import { Contacts } from "./components/contacts";
 import { Footer } from "./components/footer";

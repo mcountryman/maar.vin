@@ -15,7 +15,7 @@
     "test:watch": ""
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-markdown": "^3.4.1"

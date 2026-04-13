@@ -16,7 +16,7 @@ pub fn parse_yaml_metadata(input: &str) -> anyhow::Result<HashMap<&str, &str>> {
   let mut lines = input.split('\n').peekable();
   let mut metadata = HashMap::new();
 
-  if !matches!(lines.next(), Some(x) if x.contains("---")) {
+  if !matches!(lines.next(), Some(x) if x.trim() == "---") {
     anyhow::bail!("Missing leading `---` metadata marker");
   }
 
@@ -29,7 +29,7 @@ pub fn parse_yaml_metadata(input: &str) -> anyhow::Result<HashMap<&str, &str>> {
     metadata.insert(key.trim(), val.trim());
   }
 
-  if !lines.any(|line| line.contains("---")) {
+  if !lines.any(|line| line.trim() == "---") {
     anyhow::bail!("Missing trailing `---` metadata marker");
   }
 

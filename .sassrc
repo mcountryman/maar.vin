@@ -1,6 +1,0 @@
-{
-  "includePaths": [
-    "node_modules/bourbon-neat/core",
-    "node_modules/bourbon/core",
-  ]
-}

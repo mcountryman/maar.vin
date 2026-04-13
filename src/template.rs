@@ -11,16 +11,16 @@ impl Template {
 
     while let Some((chunk, rem)) = input.split_once("{{") {
       let Some((name, rem)) = rem.split_once("}}") else {
-        anyhow::bail!("Missing closing `}}}}` brace");
+        anyhow::bail!("Missing closing `}}` brace");
       };
 
       if name.contains("{{") {
-        anyhow::bail!("Nested replacements not supported");
+        anyhow::bail!("Nested names not allowed");
       }
 
       let name = name.trim();
       if name.is_empty() {
-        anyhow::bail!("Invalid name, expected at least one alphanumeric char");
+        anyhow::bail!("Empty names not allowed");
       }
 
       input = rem;

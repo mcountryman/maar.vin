@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="keywords" content="marvin,maar.vin,marvin,countryman">
+        <meta name="description" content="marvin's personal website">
+        <meta property="og:title" content="maar.vin - simd-adler32">
+        <meta name="build-id" content="1776120362158">
+        <title>simd-adler32</title>
+        <link rel="icon" href="/image/favicon.png" type="image/png" sizes="192x192">
+        <link rel="icon" href="/image/favicon.svg" type="image/svg+xml">
+        <link rel="stylesheet" href="/style/main.css">
+        
+    </head>
+    <body>
+        <header>
+            <h1>
+                <a href="/">maar.vin~</a>
+            </h1>
+            <hr>
+            <nav>
+                [<a href="/">home</a>]
+                [<a href="/about">about</a>]
+                [<a href="/work">work</a>]
+                [<a href="/contact">contact</a>]
+            </nav>
+        </header>
+        <hr>
+        <main>
+            <h2>simd-adler32</h2>
+<p>A fast, SIMD-accelerated implementation of the
+<a href="https://en.wikipedia.org/wiki/Adler-32">Adler-32</a> checksum algorithm, written
+in Rust.</p>
+<ul>
+<li><a href="https://crates.io/crates/simd-adler32">crates.io</a></li>
+<li><a href="https://github.com/mcountryman/simd-adler32">github</a></li>
+</ul>
+<h2>features</h2>
+<ul>
+<li>Zero dependencies</li>
+<li><code>no_std</code> support</li>
+<li>Runtime CPU feature detection with automatic scalar fallback</li>
+<li>Throughput up to ~46 GiB/s on modern hardware</li>
+</ul>
+<h2>architecture support</h2>
+<ul>
+<li><code>x86_64</code> - avx-512, avx2, ssse3, sse2</li>
+<li><code>aarc64</code> - neon</li>
+<li><code>wasm32</code> - simd128</li>
+</ul>
+<h2>safety</h2>
+<p>The library uses <code>unsafe</code> Rust for SIMD intrinsics. All unsafe paths are
+validated through AFL fuzzing.</p>
+
+        </main>
+        <hr>
+        <footer>
+            updated: 2026-04-13
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,141 @@
+:root {
+  --bg: #f3f1f3;
+  --fg: #0c090c;
+  --link: #1d4ed8;
+  --link-active: #be123c;
+  --link-visited: #7e22ce;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0c090c;
+    --fg: #f3f1f3;
+    --link: #60a5fa;
+    --link-active: #fb7185;
+    --link-visited: #c084fc;
+  }
+}
+
+@font-face {
+  src: url('/font/spacemono.woff2') format('woff2');
+  font-style: normal;
+  font-weight: normal;
+  font-family: 'Space Mono';
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: var(--fg);
+  background: var(--bg);
+
+  font-size: calc(10px + 3.1415926535px);
+  font-family: 'Space Mono', 'Courier New', 'Lucida Console', monospace;
+  line-height: 1.6;
+
+  max-width: calc(80ch + 3rem + 2px);
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+
+  border: 1px solid var(--fg);
+  border-top: 0;
+}
+
+hr {
+  margin: 0.75rem 0;
+  border: none;
+  border-top: 1px groove var(--fg);
+}
+
+a {
+  color: var(--link);
+  text-decoration: underline;
+}
+
+a:visited {
+  color: var(--link-visited);
+}
+
+a:active {
+  color: var(--link-active);
+}
+
+header h1 {
+  font-size: 1.4rem;
+  font-weight: bold;
+
+  margin-bottom: 0.5rem;
+}
+
+header h1 a {
+  color: var(--fg);
+  text-decoration: none;
+}
+
+nav {
+  margin: 0.5rem 0;
+}
+
+main {
+  margin: 1rem 0;
+}
+
+main h1,
+main h2,
+main h3,
+main h4,
+main h5,
+main h6 {
+  font-size: 1rem;
+  font-weight: bold;
+
+  margin: 1.25rem 0 0.4rem;
+}
+
+main p {
+  margin: 0.6rem 0;
+}
+
+main ul,
+main ol {
+  margin: 0.6rem 0;
+  padding-left: 2ch;
+}
+
+main li {
+  margin: 0.2rem 0;
+}
+
+code {
+  font-family: inherit;
+
+  color: var(--bg);
+  background: var(--fg);
+
+  padding: 0 0.25em;
+}
+
+pre {
+  color: var(--bg);
+  background: var(--fg);
+
+  margin: 1rem 0;
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+pre code {
+  background: none;
+
+  padding: 0;
+}
+
+footer {
+  font-size: 0.85rem;
+
+  margin-top: 0.5rem;
+}

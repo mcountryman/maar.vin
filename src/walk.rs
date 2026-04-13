@@ -14,7 +14,7 @@ where
   })
 }
 
-/// A recursive dir entry iterator returned by [walk].
+/// A recursive dir entry iterator returned by [dir].
 pub struct Walk<F> {
   dirs: Vec<ReadDir>,
   filter: F,

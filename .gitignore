@@ -1,5 +1,6 @@
 .helix/
 .cache/
 .direnv/
+.DS_Store
 
 target/

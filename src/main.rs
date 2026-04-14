@@ -1,12 +1,12 @@
 mod markdown;
 mod template;
-mod time;
 mod walk;
 
 use std::collections::{HashMap, hash_map};
 use std::fs;
 use std::path::{Path, PathBuf};
-use std::time::Instant;
+use std::process::Command;
+use std::time::{Instant, SystemTime, UNIX_EPOCH};
 use template::Template;
 
 fn main() -> anyhow::Result<()> {
@@ -27,13 +27,14 @@ fn main() -> anyhow::Result<()> {
   for path in walk::dir("www/pages", is_markdown)? {
     let time = Instant::now();
     let path = path?;
+    let modified = modified(&path)?;
 
     let target = out.join(path.strip_prefix("www/pages")?);
     let target = target.with_extension("html");
 
     let input = fs::read(&path)?;
     let input = String::from_utf8(input)?;
-    let rendered = render(&mut templates, &input)?;
+    let rendered = render(&mut templates, &modified, &input)?;
 
     if let Some(parent) = target.parent() {
       fs::create_dir_all(parent)?;
@@ -63,20 +64,23 @@ fn main() -> anyhow::Result<()> {
   Ok(())
 }
 
-fn render(templates: &mut HashMap<String, Template>, input: &str) -> anyhow::Result<String> {
+fn render(
+  templates: &mut HashMap<String, Template>,
+  modified: &str,
+  input: &str,
+) -> anyhow::Result<String> {
   let meta = markdown::parse_yaml_metadata(input)?;
 
   let template = *meta.get("template").unwrap_or(&"main.jinja");
   let template = get_or_load_template(templates, template)?;
 
   let main = markdown::render_html(input);
-  let build = time::timestamp().to_string();
-  let today = time::date();
+  let build = timestamp().to_string();
 
   Ok(template.render(|name| match name {
     "main" => Some(&main),
     "build" => Some(&build),
-    "today" => Some(&today),
+    "today" => Some(&modified),
     "head" if option_env!("DEV").is_some() => {
       Some(r#"<script defer src="/script/reload.js"></script>"#)
     }
@@ -104,4 +108,31 @@ fn is_markdown(path: &Path) -> bool {
   let extension = extension.to_string_lossy();
 
   &extension == "md"
+}
+
+fn modified(path: &Path) -> anyhow::Result<String> {
+  let output = Command::new("git")
+    .arg("log")
+    // git log -1 --pretty="format:%aI" -- www/pages/index.md
+    .arg("-1")
+    .arg("--pretty=format:%aI")
+    .arg("--")
+    .arg(path)
+    .output()?;
+
+  let date = String::from_utf8(output.stdout)?;
+  let date = date.trim();
+
+  if date.is_empty() {
+    anyhow::bail!("no git history for {path:?}");
+  }
+
+  Ok(date.to_owned())
+}
+
+fn timestamp() -> u128 {
+  let now = SystemTime::now();
+  let time = now.duration_since(UNIX_EPOCH).unwrap();
+
+  time.as_millis()
 }

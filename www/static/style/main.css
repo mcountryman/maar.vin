@@ -17,10 +17,10 @@
 }
 
 @font-face {
-  src: url('/font/spacemono.woff2') format('woff2');
+  src: url("/font/spacemono.woff2") format("woff2");
   font-style: normal;
   font-weight: normal;
-  font-family: 'Space Mono';
+  font-family: "Space Mono";
 }
 
 * {
@@ -34,7 +34,7 @@ body {
   background: var(--bg);
 
   font-size: calc(10px + 3.1415926535px);
-  font-family: 'Space Mono', 'Courier New', 'Lucida Console', monospace;
+  font-family: "Space Mono", "Courier New", "Lucida Console", monospace;
   line-height: 1.6;
 
   max-width: calc(80ch + 3rem + 2px);

@@ -1,4 +1,24 @@
+edition = "2024"
+error_on_line_overflow = true
+error_on_unformatted = true
+normalize_comments = true
+normalize_doc_attributes = true
+format_code_in_doc_comments = true
+
+# wrap
+wrap_comments = true
+
+# indent
 tab_spaces = 2
+hard_tabs = false
+
+# import
 group_imports = "One"
 imports_granularity = "Module"
-wrap_comments = true
+
+# misc
+newline_style = "Unix"
+hex_literal_case = "Lower"
+float_literal_trailing_zero = "Always"
+reorder_impl_items = true
+use_field_init_shorthand = true

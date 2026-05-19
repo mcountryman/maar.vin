@@ -7,11 +7,19 @@ test:
     cargo test
 
 # Run static code checks
-lint:
+check: check-rs check-md check-jinja
+
+check-rs:
     cargo fmt --check
-    cargo clippy -- -D warnings
-    dprint check
-    djlint www/templates/**.jinja
+    cargo clippy --all-targets -- -Dwarnings
+
+check-md:
+    prettier --check www
+    markdownlint www/pages
+
+check-jinja:
+    djlint --quiet --lint --profile=jinja --ignore=J018 www/templates/**.jinja
+    djlint --quiet --check www/templates/**.jinja   
 
 # Serve site
 serve: build

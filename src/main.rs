@@ -1,3 +1,5 @@
+#![warn(clippy::pedantic)]
+
 mod markdown;
 mod template;
 mod walk;
@@ -13,13 +15,13 @@ fn main() -> anyhow::Result<()> {
   let time = Instant::now();
   let out = PathBuf::from("target/www");
 
-  println!("Generating {out:?}");
+  println!("Generating {}", out.display());
 
   if out.exists() {
     fs::remove_dir_all(&out)?;
   }
 
-  println!("  Cleaned {out:?}");
+  println!("  Cleaned {}", out.display());
 
   let mut templates = HashMap::new();
 
@@ -42,11 +44,11 @@ fn main() -> anyhow::Result<()> {
 
     fs::write(&target, &rendered)?;
 
-    println!("  Rendered {path:?} in {:.2?}", time.elapsed());
+    println!("  Rendered {} in {:.2?}", path.display(), time.elapsed());
   }
 
   // Copy files from `www/static` into `out`
-  for path in walk::dir("www/static", |path| path.is_file())? {
+  for path in walk::dir("www/static", Path::is_file)? {
     let path = path?;
     let target = out.join(path.strip_prefix("www/static")?);
 
@@ -56,7 +58,7 @@ fn main() -> anyhow::Result<()> {
 
     fs::copy(&path, target)?;
 
-    println!("  Copied {path:?}");
+    println!("  Copied {}", path.display());
   }
 
   println!("Done in {:.2?}", time.elapsed());
@@ -80,7 +82,7 @@ fn render(
   Ok(template.render(|name| match name {
     "main" => Some(&main),
     "build" => Some(&build),
-    "today" => Some(&modified),
+    "today" => Some(modified),
     "head" if option_env!("DEV").is_some() => {
       Some(r#"<script defer src="/script/reload.js"></script>"#)
     }
@@ -124,7 +126,7 @@ fn modified(path: &Path) -> anyhow::Result<String> {
   let date = date.trim();
 
   if date.is_empty() {
-    anyhow::bail!("no git history for {path:?}");
+    anyhow::bail!("no git history for {}", path.display());
   }
 
   Ok(date.to_owned())

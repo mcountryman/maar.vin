@@ -42,7 +42,7 @@ impl Template {
   {
     let mut rendered = String::new();
 
-    for chunk in self.chunks.iter() {
+    for chunk in &self.chunks {
       match chunk {
         Chunk::Literal(str) => rendered.push_str(str),
         Chunk::Variable(name) => {
@@ -69,7 +69,7 @@ mod tests {
 
   #[test]
   fn leading() {
-    let template = Template::new(r#"{{ var0 }} 0"#).unwrap();
+    let template = Template::new(r"{{ var0 }} 0").unwrap();
     let rendered = template.render(|_| Some("value0"));
 
     assert_eq!(&rendered, "value0 0");
@@ -77,26 +77,26 @@ mod tests {
 
   #[test]
   fn trailing() {
-    let template = Template::new(r#"0 {{ var0 }}"#).unwrap();
+    let template = Template::new(r"0 {{ var0 }}").unwrap();
     let rendered = template.render(|_| Some("value0"));
 
     assert_eq!(&rendered, "0 value0");
   }
 
   #[test]
-  #[should_panic]
+  #[should_panic(expected = "Missing closing `}` brace")]
   fn missing_closing_brace() {
     Template::new("{{ ").unwrap();
   }
 
   #[test]
-  #[should_panic]
+  #[should_panic(expected = "Nested names")]
   fn nested_variable() {
     Template::new("{{ {{ }} }}").unwrap();
   }
 
   #[test]
-  #[should_panic]
+  #[should_panic(expected = "Empty names")]
   fn invalid_name() {
     Template::new("{{  }}").unwrap();
   }

@@ -22,15 +22,21 @@
       {
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
-            # utilities
             just
-            djlint
-            dprint
             watchexec
             miniserve
 
+            # md
+            prettier
+            markdownlint-cli
+
+            # rust
             rust-bin
             rust-analyzer
+
+            # jinja
+            djlint
+            dprint
           ];
 
           env = {

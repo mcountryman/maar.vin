@@ -11,6 +11,6 @@ wrote.
 
 ## projects
 
-- **[maar.vin](#)** - this site; a static site generator written in Rust
-- **[project-two](#)** - brief description of what this does
-- **[project-three](#)** - brief description of what this does
+- **maar.vin** - this site; a static site generator written in Rust
+- **project-two** - brief description of what this does
+- **project-three** - brief description of what this does

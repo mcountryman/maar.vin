@@ -7,31 +7,22 @@ on:
 jobs:
   check:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
     steps:
       - uses: actions/checkout@v4
+      - uses: DeterminateSystems/determinate-nix-action@v3
+      - uses: DeterminateSystems/magic-nix-cache-action@main
 
-      - name: Install rust
-        run: rustup toolchain install
-
-      - name: Install just
-        uses: extractions/setup-just@v2
-
-      - name: Install dprint
-        run: |
-          curl -fsSL https://dprint.dev/install.sh | sh
-          echo "$HOME/.dprint/bin" >> $GITHUB_PATH
-
-      - name: Install djlint
-        run: pip install djlint
-
-      - name: Lint
-        run: just lint
+      - name: Check
+        run: nix develop --command just check
 
       - name: Test
-        run: just test
+        run: nix develop --command just test
 
       - name: Build
-        run: just build
+        run: nix develop --command just build
 
   publish:
     runs-on: ubuntu-latest
@@ -39,17 +30,14 @@ jobs:
     if: github.ref == 'refs/heads/main'
     permissions:
       contents: write
+      id-token: write
     steps:
       - uses: actions/checkout@v4
-
-      - name: Install rust
-        run: rustup toolchain install
-
-      - name: Install just
-        uses: extractions/setup-just@v2
+      - uses: DeterminateSystems/determinate-nix-action@v3
+      - uses: DeterminateSystems/magic-nix-cache-action@main
 
       - name: Build
-        run: just build
+        run: nix develop --command just build
 
       - name: Publish
         uses: peaceiris/actions-gh-pages@v3
